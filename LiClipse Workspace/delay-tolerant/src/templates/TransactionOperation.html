@@ -1,0 +1,50 @@
+{% extends "Home.html" %}
+
+{% block content %}
+    <h2>{{operation}}  Transaction</h2>
+    <form id="frm" name="frm" method="post" action="/ProcessTransactionOperation" enctype="multipart/form-data">
+               
+      
+     <input type="hidden" name="operation" value="{{operation}}"/>
+     <input type="hidden" name="unqid" value="{{row.uniqueID}}"/>
+
+
+      <div class="form-group row">
+        <label for="fromAccountID" class="col-sm-3 col-form-label">From Account ID</label>
+        <div class="col-sm-9">
+            <select name="fromAccountID" class="form-control" {{'disabled' if operation == 'Delete'}} {{'disabled' if operation == 'Edit'}}>
+            {% for sel in selectionList %}
+                <option  value="{{sel.uniqueID}}">{{sel.accountID}}</option>
+            {% endfor %}
+            </select>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="toAccountID" class="col-sm-3 col-form-label">To Account ID</label>
+        <div class="col-sm-9">
+            <select name="toAccountID" class="form-control" {{'disabled' if operation == 'Delete'}} {{'disabled' if operation == 'Edit'}}>
+            {% for sel in selectionList1 %}
+                <option  value="{{sel.uniqueID}}">{{sel.accountID}}</option>
+            {% endfor %}
+            </select>
+        </div>
+      </div>  
+
+	  <div class="form-group row">
+        <label for="amount" class="col-sm-3 col-form-label">Amount</label>
+        <div class="col-sm-9">
+          <input type="number" class="form-control" {{'readonly' if operation == 'Delete'}} {{'readonly' if operation == 'Edit'}} name="amount" id="amount" placeholder="Amount" value="{{row.amount}}" required>
+        </div>
+      </div>
+
+       <div class="text-center">
+            <button type="submit" class="btn btn-outline-primary btn-sm ">{{operation}}</button>
+            <a href="/TransactionListing" class="btn btn-outline-primary btn-sm ">Cancel</a>            
+      </div>
+
+
+
+
+    </form>
+    
+{% endblock %}

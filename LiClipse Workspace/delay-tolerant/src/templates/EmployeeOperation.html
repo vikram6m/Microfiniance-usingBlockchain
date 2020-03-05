@@ -1,0 +1,79 @@
+{% extends "Home.html" %}
+
+{% block content %}
+    <h2>{{operation}}  Employee</h2>
+    <form id="frm" name="frm" method="post" action="/ProcessEmployeeOperation" enctype="multipart/form-data">
+    
+        <input type="hidden" name="operation" value="{{operation}}"/>
+        <input type="hidden" name="unqid" value="{{row.employeeID}}"/>
+        
+        <div class="form-group row">
+        <label for="employeeName" class="col-sm-2 col-form-label">Employee Name</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" {{'readonly' if operation == 'Delete'}} name="employeeName" id="employeeName" 
+            placeholder="Employee Name" value="{{row.employeeName}}" required>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="address1" class="col-sm-2 col-form-label">Address 1</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" {{'readonly' if operation == 'Delete'}} name="address1" id="address1"
+            placeholder="Address 1" value="{{row.address1}}" required>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="address2" class="col-sm-2 col-form-label">Address 2</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" {{'readonly' if operation == 'Delete'}} name="address2" id="address2"
+            placeholder="Address 2" value="{{row.address2}}" required>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="city" class="col-sm-2 col-form-label">City</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" {{'readonly' if operation == 'Delete'}} name="city" id="city"
+            placeholder="City" value="{{row.city}}" required>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="state" class="col-sm-2 col-form-label">State</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" {{'readonly' if operation == 'Delete'}} name="state" id="state"
+            placeholder="State" value="{{row.state}}" required>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="pincode" class="col-sm-2 col-form-label">Address</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" {{'readonly' if operation == 'Delete'}} name="pincode" id="pincode"
+            placeholder="Pincode" value="{{row.pincode}}" required>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="contactNbr" class="col-sm-2 col-form-label">Contact No</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" {{'readonly' if operation == 'Delete'}} name="contactNbr" id="contactNbr" placeholder="Contact No" value="{{row.contactNbr}}" required>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="emailID" class="col-sm-2 col-form-label">Email ID</label>
+        <div class="col-sm-10">
+          <input type="email" class="form-control" {{'readonly' if operation == 'Delete'}} name="emailID" id="emailID" placeholder="Email ID" value="{{row.emailID}}" required>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="aadharNbr" class="col-sm-2 col-form-label">Aadhar No</label>
+        <div class="col-sm-10">s
+            <input type="text" class="form-control" {{'readonly' if operation == 'Delete'}} name="aadharNbr" id="aadharNbr"
+            placeholder="Aadhar No" value="{{row.aadharNbr}}" required>
+        </div>
+      </div>
+
+      
+      <div class="text-center">
+            <button type="submit" class="btn btn-outline-primary btn-sm ">{{operation}}</button>
+            <a href="/EmployeeListing" class="btn btn-outline-primary btn-sm ">Cancel</a>            
+      </div>
+    </form>
+    
+{% endblock %}

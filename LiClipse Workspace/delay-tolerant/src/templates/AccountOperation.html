@@ -1,0 +1,53 @@
+{% extends "Home.html" %}
+
+{% block content %}
+    <h2>{{operation}}  Account</h2>
+    <form id="frm" name="frm" method="post" action="/ProcessAccountOperation" enctype="multipart/form-data">
+               
+      
+     <input type="hidden" name="operation" value="{{operation}}"/>
+     <input type="hidden" name="unqid" value="{{row.uniqueID}}"/>
+
+      <div class="form-group row">
+        <label for="accountID" class="col-sm-3 col-form-label">Account ID</label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" {{'readonly' if operation == 'Delete'}} {{'readonly' if operation == 'Edit'}} name="accountID" id="accountID" placeholder="Account ID" value="{{row.accountID}}" required>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="customerID" class="col-sm-3 col-form-label">Customer</label>
+        <div class="col-sm-9">
+            <select name="customerID" class="form-control" {{'disabled' if operation == 'Delete'}} {{'disabled' if operation == 'Edit'}}>
+            {% for sel in selectionList %}
+                <option {{'selected' if sel.customerID == row.customerModel.customerID}} value="{{sel.customerID}}">{{sel.customerName}}</option>
+            {% endfor %}
+            </select>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="accountType" class="col-sm-3 col-form-label">Account Type</label>
+        <div class="col-sm-9">
+            <select name="accountType" class="form-control" {{'disabled' if operation == 'Delete'}} {{'disabled' if operation == 'Edit'}}>
+                <option {{'selected' if row.accountType == 'Saving Account'}} value="Saving Account">Saving Account</option>
+                <option {{'selected' if row.accountType == 'Current Account'}} value="Current Account">Current Account</option>
+            </select>
+        </div>
+      </div>
+	  <div class="form-group row">
+        <label for="isActive" class="col-sm-3 col-form-label">Is Active {{row.isActive}}</label>
+        <div class="col-sm-9">
+          <input type="checkbox"  {{'disabled' if operation == 'Delete'}} name="isActive" placeholder="isActive" {{'checked' if row.isActive == 1}}/>
+        </div>
+      </div>
+
+       <div class="text-center">
+            <button type="submit" class="btn btn-outline-primary btn-sm ">{{operation}}</button>
+            <a href="/AccountListing" class="btn btn-outline-primary btn-sm ">Cancel</a>            
+      </div>
+
+
+
+
+    </form>
+    
+{% endblock %}

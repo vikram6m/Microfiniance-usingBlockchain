@@ -1,0 +1,38 @@
+{% extends "Home.html" %}
+
+{% block content %}
+    <h2 style="color:white">Transaction</h2>
+    
+<div class="text-center"><a href="/TransactionOperation?operation=Create" class="btn btn-outline-info btn-sm ">Create</a></div>
+    <table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      
+      <th scope="col">Effective Date</th>
+      <th scope="col">From Account</th>
+      <th scope="col">To Account</th>
+      <th scope="col">Amount</th>
+      <th scope="col">Action</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    {% for row in records %}
+        <tr>
+            <td>{{ row.effDate }}</td>
+            <td>{{ row.fromAccountModel.accountID}}</td>
+            <td>{{ row.toAccountModel.accountID}}</td>
+            <td>{{ row.amount}}</td>
+        <td>
+            <a href="/TransactionOperation?operation=Edit&unqid={{row.uniqueID}}" class="btn btn-outline-warning btn-sm ">Edit</a>
+        </td>
+        </tr>
+    {% endfor %}
+   </tbody>
+</table>
+<div class="text-center"><a href="/TransactionOperation?operation=Create" class="btn btn-outline-info btn-sm ">Create</a></div>
+{% endblock %}
+
+
+
+
